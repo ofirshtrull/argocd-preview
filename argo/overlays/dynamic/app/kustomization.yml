@@ -4,9 +4,15 @@ kind: Kustomization
 commonAnnotations:
   note:  dynamic Environment
 
-resources:
-  - ../../../base
+# resources:
+#   - ../../../base
 
-patchesStrategicMerge:
-  - frontend.yaml
-  - backend.yaml
+resources:
+  - user-1.yaml
+  - user-2.yaml
+
+
+# namePrefix: qa-
+
+# commonLabels:
+#   variant: qa

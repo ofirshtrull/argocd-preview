@@ -1,10 +1,10 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: user1
+  name: user2
   namespace: argocd
   labels:
-    group: user1
+    group: user2
 spec:
   project: dynamic
   source:
@@ -13,14 +13,14 @@ spec:
     targetRevision: master
     helm:
       values: |
-        fullnameOverride: user1
+        fullnameOverride: user2
         apps:
           backend:
             enabled: true
           frontend:
             enabled: true
   destination:
-    namespace: user1
+    namespace: user2
     server: https://kubernetes.default.svc
   syncPolicy:
     automated:

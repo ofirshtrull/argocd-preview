@@ -6,8 +6,6 @@ kind: Kustomization
 commonLabels:
   variant: qa
 
-namespace: my-wanted-namespace
-
 commonAnnotations:
   note:  dynamic Environment
 

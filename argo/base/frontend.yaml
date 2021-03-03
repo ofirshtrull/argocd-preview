@@ -11,6 +11,3 @@ spec:
     path: charts/frontend
     repoURL: "https://github.com/ofirshtrull/argocd-preview.git"
     targetRevision: master
-  syncPolicy:
-    syncOptions:
-      - CreateNamespace=true

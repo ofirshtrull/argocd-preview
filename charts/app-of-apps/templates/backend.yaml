@@ -2,12 +2,12 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: {{ include "app-of-apps.name" . }}-backend
+  name: {{ include "app-of-apps.fullname" . }}-backend
   namespace: argocd
 spec:
   project: dynamic
   destination:
-    namespace: {{ include "app-of-apps.name" . }}
+    namespace: {{ include "app-of-apps.fullname" . }}
     server: "https://kubernetes.default.svc"
   source:
     path: charts/backend

@@ -4,8 +4,6 @@ metadata:
   name: backend
   namespace: argocd
 spec:
-  destination:
-    namespace: qa
   source:
     helm:
       values: |

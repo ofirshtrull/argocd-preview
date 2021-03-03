@@ -6,7 +6,6 @@ metadata:
 spec:
   project: dynamic
   destination:
-    namespace: staging
     server: "https://kubernetes.default.svc"
   source:
     path: charts/frontend

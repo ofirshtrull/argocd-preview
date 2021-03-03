@@ -8,8 +8,8 @@ commonAnnotations:
 #   - ../../../base
 
 resources:
-  - user-1.yaml
-  - user-2.yaml
+  - user_1.yaml
+  - user_2.yaml
 
 
 # namePrefix: qa-

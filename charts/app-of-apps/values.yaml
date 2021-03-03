@@ -1,0 +1,7 @@
+fullnameOverride: app-of-apps # Need to change
+
+apps:
+  backend:
+    enabled: true
+  frontend:
+    enabled: true

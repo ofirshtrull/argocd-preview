@@ -4,6 +4,8 @@ kind: Application
 metadata:
   name: {{ include "app-of-apps.fullname" . }}-frontend
   namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
 spec:
   project: dynamic
   destination:

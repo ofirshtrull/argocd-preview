@@ -13,7 +13,6 @@ spec:
     targetRevision: master
   destination:
     server: https://kubernetes.default.svc
-    namespace: ofir
   syncPolicy:
     automated:
       prune: true

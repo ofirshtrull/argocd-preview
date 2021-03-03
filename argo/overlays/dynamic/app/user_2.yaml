@@ -27,6 +27,7 @@ metadata:
   name: user-2-frontend
   namespace: argocd
 spec:
+  project: dynamic
   destination:
     namespace: "user-2"
   source:

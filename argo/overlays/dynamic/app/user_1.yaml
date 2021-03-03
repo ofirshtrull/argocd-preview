@@ -4,6 +4,7 @@ metadata:
   name: user-1-backend
   namespace: argocd
 spec:
+  project: dynamic
   destination:
     namespace: "user-1"
   source:

@@ -11,6 +11,7 @@ spec:
     repoURL: https://github.com/ofirshtrull/argocd-preview.git
     path: argo/overlays/dynamic/app
     targetRevision: master
+    namespace: ofir
   destination:
     server: https://kubernetes.default.svc
   syncPolicy:

@@ -7,7 +7,11 @@ spec:
   project: dynamic
   destination:
     namespace: "user-2"
+    server: "https://kubernetes.default.svc"
   source:
+    path: charts/backend
+    repoURL: "https://github.com/ofirshtrull/argocd-preview.git"
+    targetRevision: master
     helm:
       values: |
         replicaCount: 1
@@ -31,7 +35,11 @@ spec:
   project: dynamic
   destination:
     namespace: "user-2"
+    server: "https://kubernetes.default.svc"
   source:
+    path: charts/backend
+    repoURL: "https://github.com/ofirshtrull/argocd-preview.git"
+    targetRevision: master
     helm:
       values: |
         replicaCount: 1

@@ -10,7 +10,8 @@ spec:
         replicaCount: 1
         image:
           tag: 'latest'
-
+  # destination:
+  #   namespace: "aaaa"
   syncPolicy:
     automated:
       prune: true

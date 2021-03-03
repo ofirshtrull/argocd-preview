@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: dynamic
+  namespace: argocd
+  labels:
+    group: dynamic
+spec:
+  project: dynamic
+  source:
+    repoURL: https://github.com/ofirshtrull/argocd-preview.git
+    path: argo/overlays/dynamic/app
+    targetRevision: master
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: dynamic
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true

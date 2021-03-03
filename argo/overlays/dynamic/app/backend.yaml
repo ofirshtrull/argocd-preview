@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: backend
+  namespace: argocd
+spec:
+  destination:
+    namespace: qa
+  source:
+    helm:
+      values: |
+        replicaCount: 1
+        image:
+          tag: 'latest'
+
+
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true

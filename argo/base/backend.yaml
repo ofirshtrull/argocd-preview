@@ -1,0 +1,14 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: backend
+  namespace: argocd
+spec:
+  project: dynamic
+  destination:
+    namespace: staging
+    server: "https://kubernetes.default.svc"
+  source:
+    path: charts/backend
+    repoURL: "https://github.com/ofirshtrull/argocd-preview.git"
+    targetRevision: master

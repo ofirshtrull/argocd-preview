@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: app-of-apps
+  namespace: argocd
+  labels:
+    group: argocd
+spec:
+  project: dynamic
+  source:
+    repoURL: https://github.com/ofirshtrull/argocd-preview.git
+    path: argo/app-of-apps/envs/dynamic
+    targetRevision: master
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: argocd
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true

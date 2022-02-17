@@ -11,6 +11,21 @@ spec:
   selector:
     matchLabels:
       {{- include "backend.selectorLabels" . | nindent 6 }}
+  strategy:
+    canary:
+      maxSurge: 2
+      maxUnavailable: 0
+      steps:
+      - setWeight: 20
+      - pause: {}
+      - setWeight: 40 # -> precentage of traffic to move to new version
+      - pause:
+          duration: 10m # -> time to wait from step to step defaults to s but supports s,m,h
+      - setWeight: 60
+      - pause: {duration: 10}
+      - setWeight: 80
+      - pause: {duration: 10}
+
   template:
     metadata:
       {{- with .Values.podAnnotations }}
@@ -19,20 +34,6 @@ spec:
       {{- end }}
       labels:
         {{- include "backend.selectorLabels" . | nindent 8 }}
-    strategy:
-      canary:
-        maxSurge: 2
-        maxUnavailable: 0
-        steps:
-        - setWeight: 20
-        - pause: {}
-        - setWeight: 40 # -> precentage of traffic to move to new version
-        - pause:
-            duration: 10m # -> time to wait from step to step defaults to s but supports s,m,h
-        - setWeight: 60
-        - pause: {duration: 10}
-        - setWeight: 80
-        - pause: {duration: 10}
 
     spec:
       {{- with .Values.imagePullSecrets }}

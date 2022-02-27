@@ -13,6 +13,8 @@ spec:
       {{- include "backend.selectorLabels" . | nindent 6 }}
   strategy:
     canary:
+      canaryService: {{ include "backend.fullname" . }}-canary-service
+      stableService: {{ include "backend.fullname" . }}-stable-service
       maxSurge: 2
       maxUnavailable: 0
       steps:

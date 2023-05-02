@@ -40,7 +40,7 @@ spec:
     {{- end }}
   {{- end }}
 ---
-apiVersion: networking.k8s.io/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: {{ include "backend.fullname" . }}-demo-stable
@@ -59,5 +59,7 @@ spec:
       paths:
       - path: /
         backend:
-          serviceName: {{ include "backend.fullname" . }}-stable-svc
-          servicePort: 80
+          service:
+            name: {{ include "backend.fullname" . }}-stable-svc
+            port:
+              number: 80

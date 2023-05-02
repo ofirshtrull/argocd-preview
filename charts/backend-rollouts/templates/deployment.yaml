@@ -24,7 +24,7 @@ spec:
       trafficRouting:
         smi:
          rootService: {{ include "backend.fullname" . }}-root-svc # optional
-         trafficSplitName: rollout-example-traffic-split # optional
+         trafficSplitName: {{ include "backend.fullname" . }}-traffic-split # optional
 
   revisionHistoryLimit: 0
   template:

@@ -58,9 +58,9 @@ spec:
     http:
       paths:
       - path: /
+        pathType: ImplementationSpecific
         backend:
           service:
             name: {{ include "backend.fullname" . }}-stable-svc
-            pathType: ImplementationSpecific
             port:
               number: 80

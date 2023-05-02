@@ -19,7 +19,7 @@ spec:
       values: |
         replicaCount: 1
         image:
-          tag: 'latest'
+          tag: 'yellow'
   syncPolicy:
     automated:
       prune: true

@@ -13,20 +13,19 @@ spec:
       {{- include "backend.selectorLabels" . | nindent 6 }}
   strategy:
     canary:
-      canaryService: {{ include "backend.fullname" . }}-canary-service
-      stableService: {{ include "backend.fullname" . }}-stable-service
+      canaryService: {{ include "backend.fullname" . }}-canary-svc
+      stableService: {{ include "backend.fullname" . }}-stable-svc
       maxSurge: 2
       maxUnavailable: 0
       steps:
-      - setWeight: 20
-      - pause: {}
-      - setWeight: 40 # -> precentage of traffic to move to new version
+      - setWeight: 5
       - pause:
-          duration: 10 # -> time to wait from step to step defaults to s but supports s,m,h
-      - setWeight: 60
-      - pause: {duration: 10}
-      # - setWeight: 80
-      # - pause: {duration: 10}
+          duration:
+      trafficRouting:
+        smi:
+         rootService: {{ include "backend.fullname" . }}-root-svc # optional
+         trafficSplitName: rollout-example-traffic-split # optional
+
   revisionHistoryLimit: 0
   template:
     metadata:

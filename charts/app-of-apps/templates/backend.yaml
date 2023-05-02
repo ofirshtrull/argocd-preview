@@ -10,7 +10,7 @@ spec:
   project: default
   destination:
     namespace: {{ include "app-of-apps.fullname" . }}
-    server: "https://kubernetes.default.svc"
+    server: "https://104.198.143.103"
   source:
     path: charts/backend-rollouts
     repoURL: "https://github.com/ofirshtrull/argocd-preview.git"

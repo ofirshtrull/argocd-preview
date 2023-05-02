@@ -25,7 +25,6 @@ spec:
         smi:
          rootService: {{ include "backend.fullname" . }}-root-svc # optional
          trafficSplitName: {{ include "backend.fullname" . }}-traffic-split # optional
-
   revisionHistoryLimit: 0
   template:
     metadata:

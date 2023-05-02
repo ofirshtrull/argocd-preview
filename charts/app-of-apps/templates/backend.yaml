@@ -7,12 +7,12 @@ metadata:
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:
-  project: dynamic
+  project: default
   destination:
     namespace: {{ include "app-of-apps.fullname" . }}
     server: "https://kubernetes.default.svc"
   source:
-    path: charts/backend
+    path: charts/backend-rollouts
     repoURL: "https://github.com/ofirshtrull/argocd-preview.git"
     targetRevision: master
     helm:

@@ -1,4 +1,4 @@
-fullnameOverride: app-of-apps # Need to change
+fullnameOverride: app-of-ofir # Need to change
 
 apps:
   backend:

@@ -45,7 +45,7 @@ kind: Ingress
 metadata:
   name: {{ include "backend.fullname" . }}-demo-stable
   annotations:
-    kubernetes.io/ingress.class: nginx
+    ingressClassName: nginx
     # The following annotation is needed with Linkerd in conjunction with NGINX ingress for
     # proxying HTTP traffic. The annotations rewrites the incoming header (example.com) to the
     # internal service name, preventing an infinite routing loop.
@@ -59,6 +59,5 @@ spec:
       paths:
       - path: /
         backend:
-          # Reference to a Service name, also specified in the Rollout spec.strategy.canary.stableService field
           serviceName: {{ include "backend.fullname" . }}-stable-svc
           servicePort: 80

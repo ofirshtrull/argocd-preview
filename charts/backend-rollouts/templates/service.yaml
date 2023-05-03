@@ -31,32 +31,32 @@ spec:
   selector:
     {{- include "backend.selectorLabels" . | nindent 4 }}
 
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: {{ include "backend.fullname" . }}-root-svc
-  labels:
-    {{- include "backend.labels" . | nindent 4 }}
-spec:
-  type: {{ .Values.service.type }}
-  ports:
-    - port: {{ .Values.service.port }}
-      targetPort: http
-      protocol: TCP
-      name: http
-  selector:
-    {{- include "backend.selectorLabels" . | nindent 4 }}
+# ---
+# apiVersion: v1
+# kind: Service
+# metadata:
+#   name: {{ include "backend.fullname" . }}-root-svc
+#   labels:
+#     {{- include "backend.labels" . | nindent 4 }}
+# spec:
+#   type: {{ .Values.service.type }}
+#   ports:
+#     - port: {{ .Values.service.port }}
+#       targetPort: http
+#       protocol: TCP
+#       name: http
+#   selector:
+#     {{- include "backend.selectorLabels" . | nindent 4 }}
 
----
-apiVersion: split.smi-spec.io/v1alpha1
-kind: TrafficSplit
-metadata:
-  name: {{ include "backend.fullname" . }}-traffic-split
-spec:
-  service: {{ include "backend.fullname" . }}-root-svc # controller uses the stableService if Rollout does not specify the rootService field
-  backends:
-  - service: {{ include "backend.fullname" . }}-stable-svc
-    weight: 95
-  - service: {{ include "backend.fullname" . }}-canary-svc
-    weight: 5
+# ---
+# apiVersion: split.smi-spec.io/v1alpha1
+# kind: TrafficSplit
+# metadata:
+#   name: {{ include "backend.fullname" . }}-traffic-split
+# spec:
+#   service: {{ include "backend.fullname" . }}-root-svc # controller uses the stableService if Rollout does not specify the rootService field
+#   backends:
+#   - service: {{ include "backend.fullname" . }}-stable-svc
+#     weight: 95
+#   - service: {{ include "backend.fullname" . }}-canary-svc
+#     weight: 5

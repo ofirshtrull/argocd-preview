@@ -11,20 +11,35 @@ spec:
   selector:
     matchLabels:
       {{- include "backend.selectorLabels" . | nindent 6 }}
+  # strategy:
+    # canary:
+    #   canaryService: {{ include "backend.fullname" . }}-canary-svc
+    #   stableService: {{ include "backend.fullname" . }}-stable-svc
+    #   maxSurge: 2
+    #   maxUnavailable: 0
+    #   steps:
+    #   - setWeight: 5
+    #   - pause:
+    #       duration:
+    #   trafficRouting:
+    #     smi:
+    #      rootService: {{ include "backend.fullname" . }}-root-svc # optional
+    #      trafficSplitName: {{ include "backend.fullname" . }}-traffic-split # optional
   strategy:
-    canary:
-      canaryService: {{ include "backend.fullname" . }}-canary-svc
-      stableService: {{ include "backend.fullname" . }}-stable-svc
-      maxSurge: 2
-      maxUnavailable: 0
-      steps:
-      - setWeight: 5
-      - pause:
-          duration:
-      trafficRouting:
-        smi:
-         rootService: {{ include "backend.fullname" . }}-root-svc # optional
-         trafficSplitName: {{ include "backend.fullname" . }}-traffic-split # optional
+    blueGreen:
+      # activeService specifies the service to update with the new template hash at time of promotion.
+      # This field is mandatory for the blueGreen update strategy.
+      activeService: {{ include "backend.fullname" . }}-stable-svc
+      # previewService specifies the service to update with the new template hash before promotion.
+      # This allows the preview stack to be reachable without serving production traffic.
+      # This field is optional.
+      previewService: {{ include "backend.fullname" . }}-canary-svc
+      # autoPromotionEnabled disables automated promotion of the new stack by pausing the rollout
+      # immediately before the promotion. If omitted, the default behavior is to promote the new
+      # stack as soon as the ReplicaSet are completely ready/available.
+      # Rollouts can be resumed using: `kubectl argo rollouts promote ROLLOUT`
+      autoPromotionEnabled: false
+
   revisionHistoryLimit: 0
   template:
     metadata:

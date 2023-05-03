@@ -2,8 +2,8 @@ apiVersion: v1
 kind: Service
 metadata:
   name: {{ include "backend.fullname" . }}-stable-svc
-  labels:
-    {{- include "backend.labels" . | nindent 4 }}
+  # labels:
+  #   {{- include "backend.labels" . | nindent 4 }}
 spec:
   type: {{ .Values.service.type }}
   ports:
@@ -19,8 +19,8 @@ apiVersion: v1
 kind: Service
 metadata:
   name: {{ include "backend.fullname" . }}-canary-svc
-  labels:
-    {{- include "backend.labels" . | nindent 4 }}
+  # labels:
+  #   {{- include "backend.labels" . | nindent 4 }}
 spec:
   type: {{ .Values.service.type }}
   ports:

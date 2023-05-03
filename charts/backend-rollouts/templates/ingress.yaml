@@ -39,28 +39,28 @@ spec:
           {{- end }}
     {{- end }}
   {{- end }}
----
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: {{ include "backend.fullname" . }}-demo-stable
-  annotations:
-    ingressClassName: nginx
-    # The following annotation is needed with Linkerd in conjunction with NGINX ingress for
-    # proxying HTTP traffic. The annotations rewrites the incoming header (example.com) to the
-    # internal service name, preventing an infinite routing loop.
-    # See: https://linkerd.io/2/tasks/using-ingress/#nginx
-    nginx.ingress.kubernetes.io/configuration-snippet: |
-      proxy_set_header l5d-dst-override $service_name.$namespace.svc.cluster.local:$service_port;
-spec:
-  rules:
-  - host: ofir-canary.pipl.pro
-    http:
-      paths:
-      - path: /
-        pathType: ImplementationSpecific
-        backend:
-          service:
-            name: {{ include "backend.fullname" . }}-stable-svc
-            port:
-              number: 80
+# ---
+# apiVersion: networking.k8s.io/v1
+# kind: Ingress
+# metadata:
+#   name: {{ include "backend.fullname" . }}-demo-stable
+#   annotations:
+#     ingressClassName: nginx
+#     # The following annotation is needed with Linkerd in conjunction with NGINX ingress for
+#     # proxying HTTP traffic. The annotations rewrites the incoming header (example.com) to the
+#     # internal service name, preventing an infinite routing loop.
+#     # See: https://linkerd.io/2/tasks/using-ingress/#nginx
+#     nginx.ingress.kubernetes.io/configuration-snippet: |
+#       proxy_set_header l5d-dst-override $service_name.$namespace.svc.cluster.local:$service_port;
+# spec:
+#   rules:
+#   - host: ofir-canary.pipl.pro
+#     http:
+#       paths:
+#       - path: /
+#         pathType: ImplementationSpecific
+#         backend:
+#           service:
+#             name: {{ include "backend.fullname" . }}-stable-svc
+#             port:
+#               number: 80
